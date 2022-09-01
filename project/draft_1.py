@@ -68,7 +68,8 @@ def get_strongly_connected_components(G) ->list:
     return SCCs
 
 def getCycles(G, cycles):
-    
+    pass
+
 def getDAG(cycles: list):
     current_cycle = cycles
     v_hat = set()
@@ -81,7 +82,8 @@ def getDAG(cycles: list):
         v_total += set(vertices)
     v_appear_count = {}
     for v in v_total:
-        for c in cycles
+        for c in cycles:
+            pass
 
 def add_two_hop_cover(v):
     pass

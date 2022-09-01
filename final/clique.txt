@@ -1,0 +1,60 @@
+def get_k_clique(G) -> list:
+    k_cliques = []
+    visited = set()
+    stack = []
+    for v in vertices: 
+        if v is not visited:
+            do DFS started from v
+    clear visited
+    while stack is not empty:
+        v = stack.pop
+        if v is not visited:
+            component = backward DFS traversal starting from v
+            add component into k_cliques if there are k vertices in component
+    return k_cliques
+
+def DFS(G, traversal, vertex, visited, stack):
+    add vertex into visited
+    add vertex into traversal
+    for v in neighbors:
+        if v is not visited:
+            DFS(G, traversal, v, visited, stack)
+    add vertex into stack
+    return traversal
+
+def get_k_clique(G, k) ->list:
+    SCCs = []
+    visited = set()
+    stack = []
+    vertices = list(G.vertex_dict.keys())
+    for v in vertices: 
+        if v not in visited:
+            DFS(G, [], v, visited, stack)
+    print(stack)
+    reverse = reverse_G(G)
+    visited = set()
+    while stack:
+        v = stack.pop()
+        if v not in visited:
+            component = DFS(reverse, [], v, visited, [])
+            if len(component >= k):
+                SCCs.append(component)
+    return SCCs
+
+def DFS(G, traversal, vertex, visited, stack):
+    visited.add(vertex)
+    traversal.append(vertex)
+    neighbors = G.adj_list_out[G.vertex_dict[vertex]]
+    for out_edge in neighbors:
+        v = out_edge[0]
+        if v not in visited:
+            DFS(G, traversal, v, visited, stack)
+    stack.append(vertex)
+    return traversal
+
+def reverse_G(G):
+    r_G = copy.deepcopy(G)
+    temp = copy.deepcopy(r_G.adj_list_in)
+    r_G.adj_list_in = r_G.adj_list_out
+    r_G.adj_list_out = temp
+    return r_G
